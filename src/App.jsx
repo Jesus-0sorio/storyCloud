@@ -1,19 +1,31 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, Login } from './Pages';
+import { ProtectedRoute } from './Components/ProtectedRoute';
+import { Home, Login, SignUp } from './Pages';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<Routes>
-				<Route
-					path='/'
-					element={<Home />}
-				/>
-				<Route
-					path='/login'
-					element={<Login />}
-				/>
-			</Routes>
+			<AuthContext>
+				<Routes>
+					<Route
+						path='/'
+						element={
+							<ProtectedRoute>
+								<Home />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/login'
+						element={<Login />}
+					/>
+					<Route 
+						path='/signup'
+						element={<SignUp />}
+					/>
+				</Routes>
+			</AuthContext>
 		</BrowserRouter>
 	);
 }
