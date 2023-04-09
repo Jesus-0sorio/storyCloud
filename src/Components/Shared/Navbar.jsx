@@ -7,14 +7,15 @@ import {
 } from 'react-icons/all';
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { RxExit } from 'react-icons/rx';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/camera.svg';
 import { useAuth } from '../../context/AuthContext';
 
 export const Navbar = () => {
 	const { user, logout } = useAuth();
-	const navClass = !user && 'hidden';
 	const [active, setActive] = useState('home');
+	const Navigate = useNavigate();
+	const navClass = !user && 'hidden';
 	const activeClass =
 		'group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 bg-gray-100';
 	const inactiveClass =
