@@ -10,7 +10,6 @@ import { RxExit } from 'react-icons/rx';
 import { Link, Navigate } from 'react-router-dom';
 import logo from '../../assets/camera.svg';
 import { useAuth } from '../../context/AuthContext';
-import {CommonInput} from '../CommonInput'
 
 export const Navbar = () => {
 	const { user, logout } = useAuth();
@@ -26,6 +25,7 @@ export const Navbar = () => {
 	};
 
 	const handleLogout = () => {
+		setActive('home');
 		logout();
 		Navigate('/login');
 	};
@@ -155,8 +155,8 @@ export const Navbar = () => {
 				</div>
 			</div>
 			<div
-				className={`overflow-auto pl-12 min-h-screen fixed transition-all duration-300 ease-in-out ${
-					active != 'search' ? 'w-0' : 'w-[21rem]'
+				className={`overflow-auto pl-12 min-h-screen fixed transition-all duration-300 ease-in-out w-0 ${
+					active != 'search' ? 'hidden' : 'w-[21rem]'
 				}`}>
 				<div className=' border-r bg-white'>
 					<div className='p-4'>
