@@ -1,20 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
-import loginImg from '../assets/loginImg.svg';
+import loginImg from '../assets/login.svg';
 import { useAuth } from '../context/AuthContext';
+import { CommonInput } from '../Components';
 
 export const Login = () => {
 	const Navigate = useNavigate();
 	const { user, login } = useAuth();
-	console.log(user);
 	const handleLogin = (e) => {
 		login();
 		Navigate('/');
 	};
 	return (
-		<div className='flex h-screen justify-center md:px-3 md:pt-3'>
+		<div className='flex h-screen justify-center md:px-3 md:pt-3 col-span-3'>
 			<div className='hidden lg:grid justify-items-center items-end h-full'>
 				<h2 className='text-4xl text-center text-[#965100] font-mono'>
-					Mas Que Compartir Historias
+					Mas Que Compartiendo Historias
 				</h2>
 				<img
 					src={loginImg}
@@ -26,17 +26,8 @@ export const Login = () => {
 					action=''
 					className='grid justify-center gap-6 h-3/5'>
 					<h1 className='font-medium text-3xl text-center mb-4'>StoryCloud</h1>
-		
-					<input
-						className='text-sm h-14 w-72 border rounded-md p-3'
-						type='text'
-						placeholder='Correo electronico'
-					/>
-					<input
-						className='text-sm h-14 w-72 border rounded-md p-3'
-						type='password'
-						placeholder='Contraseña'
-					/>
+					<CommonInput type='text' text='Correo electronico' />
+					<CommonInput type='password' text='Contraseña' />
 					<button
 						onClick={handleLogin}
 						className='h-14 w-72 bg-[#965100] text-white rounded-md hover:bg-[#7a460b]'>

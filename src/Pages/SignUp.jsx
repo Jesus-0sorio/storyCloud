@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {CommonInput} from '../Components'
 
 export const SignUp = () => {
 	return (
@@ -9,30 +10,13 @@ export const SignUp = () => {
 					<form
 						action=''
 						className='grid justify-center gap-6 h-3/5'>
-						<h1 className='font-medium text-3xl text-center mb-4'>
+						<h1 className='font-medium text-4xl text-center mb-4'>
 							StoryCloud
 						</h1>
-
-						<input
-							className='text-sm h-12 w-64 md:h-14 md:w-72 border rounded-md p-3'
-							type='text'
-							placeholder='Correo electronico'
-						/>
-						<input
-							className='text-sm h-12 w-64 md:h-14 md:w-72 border rounded-md p-3'
-							type='text'
-							placeholder='Nombre completo'
-						/>
-						<input
-							className='text-sm h-12 w-64 md:h-14 md:w-72 border rounded-md p-3'
-							type='text'
-							placeholder='Nombre de usuario'
-						/>
-						<input
-							className='text-sm h-12 w-64 md:h-14 md:w-72 border rounded-md p-3'
-							type='password'
-							placeholder='Contraseña'
-						/>
+            <CommonInput type='text' text='Correo electronico' />
+            <CommonInput type='text' text='Nombre completo' />
+            <CommonInput type='text' text='Nombre de usuario' />
+            <CommonInput type='password' text='Contraseña' />
 						<div className='text-sm flex justify-center'>
 							<input type='checkbox' />{' '}
 							<span className='ml-2'>
