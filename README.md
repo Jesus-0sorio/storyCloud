@@ -3,14 +3,19 @@
 
 ## ⚙️ Set up 
 Instalar dependecias:
-### `npm install`
+```sh
+npm install
+```
 Ejecutar el proyecto:
-### `npm start`
+```sh
+npm start
+```
 
 ## 💼 Produccion
 Construir para podruccion:
-### `npm run build`
-
+```sh
+npm run build
+```
 
 ## 🛠️ Construido con
 - [React](https://reactjs.org/) - [Vite](https://vitejs.dev/guide/)
