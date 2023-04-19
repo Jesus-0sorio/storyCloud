@@ -54,8 +54,8 @@ export const Navbar = () => {
 								<li
 									className='min-w-max'
 									onClick={() => classSelected('home')}>
-									<a
-										href='#'
+									<Link
+										to='/'
 										aria-label='inicio'
 										className={active == 'home' ? activeClass : inactiveClass}>
 										<GrHomeRounded />
@@ -65,7 +65,7 @@ export const Navbar = () => {
 											}`}>
 											Inicio
 										</span>
-									</a>
+									</Link>
 								</li>
 								<li
 									className='min-w-max'
@@ -122,7 +122,8 @@ export const Navbar = () => {
 								<li
 									className='min-w-max'
 									onClick={() => classSelected('profile')}>
-									<a
+									<Link
+										to='/profile'
 										href='#'
 										className={
 											active == 'profile' ? activeClass : inactiveClass
@@ -137,7 +138,7 @@ export const Navbar = () => {
 											}`}>
 											Perfil
 										</span>
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
