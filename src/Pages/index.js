@@ -5,4 +5,4 @@ export * from './Profile';
 export * from './Settings';
 export * from './PageNoFound';
 export * from './Settings';
-//export * from './EditProfile';
+export * from './Messages';

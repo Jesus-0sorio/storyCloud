@@ -1,5 +1,5 @@
-import { setPosts, startLoading } from './PostSlice';
 import axios from 'axios';
+import { setPosts, startLoading } from './PostSlice';
 
 export const getPosts = (page = 0) => {
 	return async (dispatch, getState) => {
@@ -14,18 +14,18 @@ export const getPosts = (page = 0) => {
 		);
 
 		const randomNum = () => {
-            const min = 10;
-            const max = 5000;
+			const min = 10;
+			const max = 5000;
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		};
 
 		const response = responseImages.data.map((item, key) => ({
-            userId: responseUsers.data.results[key].id.value,
+			userId: responseUsers.data.results[key].id.value,
 			user: responseUsers.data.results[key].login.username,
 			profilePhoto: responseUsers.data.results[key].picture.thumbnail,
 			imageUrl: item.download_url,
-            likes: randomNum(),
-            comments: randomNum(),
+			likes: randomNum(),
+			comments: randomNum(),
 		}));
 
 		dispatch(
