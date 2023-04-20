@@ -26,8 +26,16 @@ export const Login = () => {
 					action=''
 					className='grid justify-center gap-6 h-3/5'>
 					<h1 className='font-medium text-3xl text-center mb-4'>StoryCloud</h1>
-					<CommonInput type='text' text='Correo electronico' isRequired/>
-					<CommonInput type='password' text='Contraseña' isRequired/>
+					<CommonInput
+						type='text'
+						text='Correo electronico'
+						isRequired
+					/>
+					<CommonInput
+						type='password'
+						text='Contraseña'
+						isRequired
+					/>
 					<button
 						onClick={handleLogin}
 						className='h-14 w-72 bg-[#965100] text-white rounded-md hover:bg-[#7a460b]'>
@@ -38,7 +46,7 @@ export const Login = () => {
 					Si no tienes cuenta
 					<Link
 						className='underline text-blue-500 ml-1 hover:text-blue-700'
-						to='/signup'>
+						to='/storyCloud/signup'>
 						Registrate
 					</Link>
 				</p>

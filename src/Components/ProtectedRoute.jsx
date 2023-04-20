@@ -1,10 +1,10 @@
-import { Navigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth()
+	const { user } = useAuth();
 
-  if (!user) return <Navigate to='/storyCloud/login' />;
+	if (!user) return <Navigate to='/storyCloud/login' />;
 
-  return <>{children}</>
-}
+	return <>{children}</>;
+};
