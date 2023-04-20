@@ -8,7 +8,7 @@ export const Login = () => {
 	const { user, login } = useAuth();
 	const handleLogin = (e) => {
 		login();
-		Navigate('/');
+		Navigate('/storyCloud/');
 	};
 	return (
 		<div className='flex h-screen justify-center md:px-3 md:pt-3 col-span-3'>
