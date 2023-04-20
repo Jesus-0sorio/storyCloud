@@ -123,7 +123,7 @@ export const Navbar = () => {
 									className='min-w-max'
 									onClick={() => classSelected('profile')}>
 									<Link
-										to='/profile'
+										to='/profile/3'
 										href='#'
 										className={
 											active == 'profile' ? activeClass : inactiveClass

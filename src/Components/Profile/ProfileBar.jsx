@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export const ProfileBar = () => {
 	return (
@@ -15,9 +16,9 @@ export const ProfileBar = () => {
 						alt='Profile'
 						className='w-36 h-36 rounded-full'
 					/>
-					<button className='bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 text-sm font-semibold mt-2'>
+					<NavLink to="/settings" className='bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 text-sm font-semibold mt-2'>
 						Editar perfil
-					</button>
+					</NavLink>
 				</div>
 				<div className='flex items-center text-gray-600 text-lg space-x-10'>
 					<div className='flex flex-col items-center'>

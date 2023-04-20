@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ProtectedRoute } from './Components/ProtectedRoute';
-import { Home, Login, SignUp, PageNoFound, Profile } from './Pages';
+import { Home, Login, SignUp, PageNoFound, Profile, Settings } from './Pages';
 import { AuthContext } from './context/AuthContext';
 import { Navbar } from './Components/Shared/Navbar';
 
@@ -35,6 +35,14 @@ function App() {
 								element={
 									<ProtectedRoute>
 										<Home />
+									</ProtectedRoute>
+								}
+							/>
+							<Route
+								path='/settings'
+								element={
+									<ProtectedRoute>
+										<Settings />
 									</ProtectedRoute>
 								}
 							/>
