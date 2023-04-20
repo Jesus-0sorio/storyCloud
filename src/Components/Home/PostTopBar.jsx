@@ -14,7 +14,6 @@ export const PostTopBar = ({ profilePicture, username }) => {
 							<p className='text-gray-500 text-sm'>Ciudad, País</p>
 						</div>
 					</div>
-					<button className='text-blue-500 font-semibold'>Seguir</button>
 				</div>
 			</div>
 		</>

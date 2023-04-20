@@ -1,18 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ProtectedRoute } from './Components/ProtectedRoute';
-import { Home, Login, SignUp, PageNoFound, Profile } from './Pages';
+import { Home, Login, SignUp, PageNoFound, Profile, Settings, Messages } from './Pages';
 import { AuthContext } from './context/AuthContext';
 import { Navbar } from './Components/Shared/Navbar';
+
 
 function App() {
 	return (
 		<BrowserRouter>
 			<AuthContext>
-				<div className='grid grid-cols-6'>
-					<div className='col-span-1'>
 						<Navbar />
-					</div>
-					<div className='col-span-5'>
 						<Routes>
 							<Route
 								path='/login'
@@ -39,12 +36,24 @@ function App() {
 								}
 							/>
 							<Route
+								path='/settings'
+								element={
+									<ProtectedRoute>
+										<Settings />
+									</ProtectedRoute>
+								}
+							/>
+							<Route
+								path='/messages'
+								element={
+										<Messages />
+								}
+							/>
+							<Route
 								path='*'
 								element={<PageNoFound />}
 							/>
 						</Routes>
-					</div>
-				</div>
 			</AuthContext>
 		</BrowserRouter>
 	);

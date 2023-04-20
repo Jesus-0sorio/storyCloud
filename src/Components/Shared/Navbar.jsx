@@ -1,23 +1,27 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
 	BiPaperPlane,
 	BsSearch,
 	GrHomeRounded,
-	IoAddCircleOutline,
+	IoAddCircleOutline,MdOutlineCancel
 } from 'react-icons/all';
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { RxExit } from 'react-icons/rx';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import logo from '../../assets/camera.svg';
 import { useAuth } from '../../context/AuthContext';
+import { Modal } from '../publication/Modal';
 
 export const Navbar = () => {
 	const { user, logout } = useAuth();
 	const [active, setActive] = useState('home');
 	const Navigate = useNavigate();
+	const searchRef = useRef();
+	const [modalState, setModalState] = useState(false);
+
 	const navClass = !user && 'hidden';
 	const activeClass =
-		'group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 bg-gray-100';
+		'group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 bg-gray-100 w-full';
 	const inactiveClass =
 		'group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600';
 
@@ -29,6 +33,10 @@ export const Navbar = () => {
 		setActive('home');
 		logout();
 		Navigate('/login');
+	};
+
+	const handleModal = () => {
+		setModalState(!modalState);
 	};
 
 	return (
@@ -87,8 +95,8 @@ export const Navbar = () => {
 								<li
 									className='min-w-max'
 									onClick={() => classSelected('send')}>
-									<a
-										href='#'
+									<NavLink
+										to='/messages'
 										className={active == 'send' ? activeClass : inactiveClass}>
 										<BiPaperPlane
 											className='group-hover:text-[#404040]'
@@ -100,13 +108,14 @@ export const Navbar = () => {
 											}`}>
 											Mensajes
 										</span>
-									</a>
+									</NavLink>
 								</li>
 								<li
 									className='min-w-max'
-									onClick={() => classSelected('create')}>
-									<a
-										href='#'
+									onClick={
+										(() => {classSelected('create'); setModalState(!modalState)})
+									}>
+									<button
 										className={
 											active == 'create' ? activeClass : inactiveClass
 										}>
@@ -117,13 +126,13 @@ export const Navbar = () => {
 											}`}>
 											Crear
 										</span>
-									</a>
+									</button>
 								</li>
 								<li
 									className='min-w-max'
 									onClick={() => classSelected('profile')}>
 									<Link
-										to='/profile'
+										to='/profile/3'
 										href='#'
 										className={
 											active == 'profile' ? activeClass : inactiveClass
@@ -163,17 +172,28 @@ export const Navbar = () => {
 				<div className=' border-r bg-white'>
 					<div className='p-4'>
 						<h1 className='text-xl mb-4'>Buscar</h1>
-						<input
-							placeholder='buscar'
-							type='text'
-							className='text-sm h-10 w-64 border rounded-md p-3'
-						/>
+						<div className=''>
+							<input
+								placeholder='buscar'
+								type='text'
+								className='text-sm h-10 w-64 border rounded-md p-3'
+								ref={searchRef}
+							/>
+							<button onClick={() => (searchRef.current.value = '')}>
+								<MdOutlineCancel className='absolute inset-y-[4.5rem] right-6' />
+								{/* <span className='absolute inset-y-[4.22rem] right-5'>✖️</span> */}
+							</button>
+						</div>
 					</div>
 					<div className='border-t p-4 min-h-screen bg-white w-full mt-2'>
 						<span className='text-sm'>Sin busquedas</span>
 					</div>
 				</div>
 			</div>
+			<Modal
+				modalState={modalState}
+				handleModal={handleModal}
+			/>
 		</>
 	);
 };
