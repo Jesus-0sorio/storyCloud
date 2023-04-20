@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { ProfileEdit } from '../Components/Settings/ProfileEdit'
+import { ChangePassword } from '../Components/Settings/ChangePassword';  
 
 import 'tailwindcss/tailwind.css';
 
@@ -7,9 +9,9 @@ export const Settings = () => {
 	const [active, setActive] = useState('Editar Perfil');
 
 	const activeClass =
-		'inline-block p-4 text-black border-b-2 border-black rounded-t-lg bg-gray-100';
+		'inline-block p-4 text-black border-b-2 border-black rounded-t-lg bg-gray-100 select-none';
 	const inactiveClass =
-		'inline-block p-4 border-b-2 text-gray-500  rounded-t-lg hover:text-gray-600 border-gray-200 hover:border-gray-500';
+		'inline-block p-4 border-b-2 text-gray-500  rounded-t-lg hover:text-gray-600 border-gray-200 hover:border-gray-500 select-none';
 
 	const classSelected = (value) => {
 		setActive(value);
@@ -33,10 +35,10 @@ export const Settings = () => {
 			</TabList>
 
 			<TabPanel>
-				<div>Contenido de la pestaña 1</div>
+				<ProfileEdit />
 			</TabPanel>
 			<TabPanel>
-				<div>Contenido de la pestaña 2</div>
+				<ChangePassword />
 			</TabPanel>
 		</Tabs>
 	);
