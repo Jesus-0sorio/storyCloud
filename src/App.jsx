@@ -19,15 +19,15 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route
-						path='/storyCloud/login'
+						path='/login'
 						element={<Login />}
 					/>
 					<Route
-						path='/storyCloud/signup'
+						path='/signup'
 						element={<SignUp />}
 					/>
 					<Route
-						path='/storyCloud/profile/:id'
+						path='/profile/:id'
 						element={
 							<ProtectedRoute>
 								<Profile />
@@ -35,7 +35,7 @@ function App() {
 						}
 					/>
 					<Route
-						path='/storyCloud'
+						path='/'
 						element={
 							<ProtectedRoute>
 								<Home />
@@ -43,7 +43,7 @@ function App() {
 						}
 					/>
 					<Route
-						path='/storyCloud/settings'
+						path='/settings'
 						element={
 							<ProtectedRoute>
 								<Settings />
@@ -51,7 +51,7 @@ function App() {
 						}
 					/>
 					<Route
-						path='/storyCloud/messages'
+						path='/messages'
 						element={<Messages />}
 					/>
 					<Route

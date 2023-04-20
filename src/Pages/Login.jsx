@@ -8,7 +8,7 @@ export const Login = () => {
 	const { user, login } = useAuth();
 	const handleLogin = (e) => {
 		login();
-		Navigate('/storyCloud/');
+		Navigate('/');
 	};
 	return (
 		<div className='flex h-screen justify-center md:px-3 md:pt-3 col-span-3'>
@@ -46,7 +46,7 @@ export const Login = () => {
 					Si no tienes cuenta
 					<Link
 						className='underline text-blue-500 ml-1 hover:text-blue-700'
-						to='/storyCloud/signup'>
+						to='/signup'>
 						Registrate
 					</Link>
 				</p>

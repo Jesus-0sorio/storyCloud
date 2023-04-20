@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 export const ProtectedRoute = ({ children }) => {
 	const { user } = useAuth();
 
-	if (!user) return <Navigate to='/storyCloud/login' />;
+	if (!user) return <Navigate to='/login' />;
 
 	return <>{children}</>;
 };

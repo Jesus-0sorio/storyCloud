@@ -32,7 +32,7 @@ export const Navbar = () => {
 	const handleLogout = () => {
 		setActive('home');
 		logout();
-		Navigate('/storyCloud/login');
+		Navigate('/login');
 	};
 
 	const handleModal = () => {
@@ -49,7 +49,7 @@ export const Navbar = () => {
 					<div className='flex h-screen flex-col justify-between pt-2 pb-6'>
 						<div>
 							<Link
-								to='/storyCloud/'
+								to='/'
 								className='w-max p-1 flex m-auto gap-1 items-center'>
 								<img
 									src={logo}
@@ -63,7 +63,7 @@ export const Navbar = () => {
 									className='min-w-max'
 									onClick={() => classSelected('home')}>
 									<Link
-										to='/storyCloud/'
+										to='/'
 										aria-label='inicio'
 										className={active == 'home' ? activeClass : inactiveClass}>
 										<GrHomeRounded />
@@ -78,8 +78,8 @@ export const Navbar = () => {
 								<li
 									className='min-w-max'
 									onClick={() => classSelected('search')}>
-									<a
-										href='#'
+									<button
+										
 										className={
 											active == 'search' ? activeClass : inactiveClass
 										}>
@@ -90,13 +90,13 @@ export const Navbar = () => {
 											}`}>
 											Buscar
 										</span>
-									</a>
+									</button>
 								</li>
 								<li
 									className='min-w-max'
 									onClick={() => classSelected('send')}>
 									<NavLink
-										to='/storyCloud/messages'
+										to='/messages'
 										className={active == 'send' ? activeClass : inactiveClass}>
 										<BiPaperPlane
 											className='group-hover:text-[#404040]'
@@ -132,8 +132,7 @@ export const Navbar = () => {
 									className='min-w-max'
 									onClick={() => classSelected('profile')}>
 									<Link
-										to='/storyCloud/profile/3'
-										href='#'
+										to='/profile/3'
 										className={
 											active == 'profile' ? activeClass : inactiveClass
 										}>
