@@ -6,7 +6,7 @@ export const ProfileEdit = () => {
 
 	return (
 		<>
-			<div className='max-w-lg mx-auto mt-20 border rounded-lg shadow-lg p-7'>
+			<div className='max-w-lg mx-auto mt-8 border rounded-lg shadow-lg p-7'>
 				<h1 className='text-2xl font-semibold mb-4'>Editar Perfil</h1>
 				<div className='grid grid-cols-2 gap-6 mb-4'>
 					<div>
