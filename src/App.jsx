@@ -35,7 +35,7 @@ function App() {
 						}
 					/>
 					<Route
-						path='/storyCloud/'
+						path='/storyCloud'
 						element={
 							<ProtectedRoute>
 								<Home />
