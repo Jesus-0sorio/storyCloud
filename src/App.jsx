@@ -9,51 +9,38 @@ function App() {
 	return (
 		<BrowserRouter>
 			<AuthContext>
-						<Navbar />
-						<Routes>
-							<Route
-								path='/login'
-								element={<Login />}
-							/>
-							<Route
-								path='/signup'
-								element={<SignUp />}
-							/>
-							<Route
-								path='/profile/:id'
-								element={
-									<ProtectedRoute>
-										<Profile />
-									</ProtectedRoute>
-								}
-							/>
-							<Route
-								path='/'
-								element={
-									<ProtectedRoute>
-										<Home />
-									</ProtectedRoute>
-								}
-							/>
-							<Route
-								path='/settings'
-								element={
-									<ProtectedRoute>
-										<Settings />
-									</ProtectedRoute>
-								}
-							/>
-							<Route
-								path='/messages'
-								element={
-										<Messages />
-								}
-							/>
-							<Route
-								path='*'
-								element={<PageNoFound />}
-							/>
-						</Routes>
+				<Routes>
+					<Route
+						path='/login'
+						element={<Login />}
+					/>
+					<Route
+						path='/signup'
+						element={<SignUp />}
+					/>
+					<Route element={<ProtectedRoute />}>
+						<Route
+							path='/profile/:id'
+							element={<Profile />}
+						/>
+						<Route
+							path='/'
+							element={<Home />}
+						/>
+						<Route
+							path='/settings'
+							element={<Settings />}
+						/>
+						<Route
+							path='/messages'
+							element={<Messages />}
+						/>
+					</Route>
+					<Route
+						path='*'
+						element={<PageNoFound />}
+					/>
+				</Routes>
 			</AuthContext>
 		</BrowserRouter>
 	);
