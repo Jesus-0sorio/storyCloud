@@ -9,17 +9,17 @@ import { HiOutlineUserCircle } from 'react-icons/hi';
 import { RxExit } from 'react-icons/rx';
 import { Link, useNavigate, NavLink } from 'react-router-dom';
 import logo from '../../assets/camera.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '../../context/AuthContext';
 import { Modal } from '../publication/Modal';
+import { logoutThunk } from '../../Store/Slices/Auth/thunks';
+
 
 export const Navbar = () => {
-	const { user, logout } = useAuth();
+	const dispatch = useDispatch();
 	const [active, setActive] = useState('home');
-	const Navigate = useNavigate();
 	const searchRef = useRef();
 	const [modalState, setModalState] = useState(false);
-
-	const navClass = !user && 'hidden';
 	const activeClass =
 		'group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 bg-gray-100 w-full';
 	const inactiveClass =
@@ -31,8 +31,7 @@ export const Navbar = () => {
 
 	const handleLogout = () => {
 		setActive('home');
-		logout();
-		Navigate('/login');
+		dispatch(logoutThunk());
 	};
 
 	const handleModal = () => {
@@ -41,7 +40,7 @@ export const Navbar = () => {
 
 	return (
 		<>
-			<div className={`${navClass} min-h-screen bg-gray-100 fixed z-10`}>
+			<div className='min-h-screen bg-gray-100 fixed z-10'>
 				<div
 					className={`min-h-screen border-r overflow-hidden transition-all duration-300 ease-in-out  bg-white shadow-lg ${
 						active == 'search' ? 'w-12' : 'w-60'
