@@ -36,7 +36,7 @@ export const ProfileEdit = () => {
 						/>
 					</div>
 				</div>
-				<div className='mb-4'>
+				{/* <div className='mb-4'>
 					<label
 						htmlFor='bio'
 						className='block font-medium mb-2'>
@@ -46,7 +46,7 @@ export const ProfileEdit = () => {
 						id='bio'
 						className='border-gray-100 border outline-none rounded-md p-2 w-full h-24 resize-none'
 						placeholder='Write a short bio about yourself'></textarea>
-				</div>
+				</div> */}
 				<div className='mb-4'>
 					<label
 						htmlFor='email'
@@ -60,7 +60,7 @@ export const ProfileEdit = () => {
 						placeholder='Your email'
 					/>
 				</div>
-				<div className='mb-4'>
+				{/* <div className='mb-4'>
 					<label
 						htmlFor='phone'
 						className='block font-medium mb-2'>
@@ -72,7 +72,7 @@ export const ProfileEdit = () => {
 						className='border-gray-100 border outline-none rounded-md p-2 w-full'
 						placeholder='Your phone number'
 					/>
-				</div>
+				</div> */}
 				<div className='mb-4'>
 					<label className='block font-medium mb-2'>Cuenta Privada</label>
 					<Switch

@@ -1,15 +1,37 @@
 import { Link, useNavigate } from 'react-router-dom';
 import loginImg from '../assets/login.svg';
-import { useAuth } from '../context/AuthContext';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import { CommonInput } from '../Components';
+import { useEffect, useState } from 'react';
+import { login } from '../Store/Slices/Auth/thunks';
 
 export const Login = () => {
-	const Navigate = useNavigate();
-	const { user, login } = useAuth();
-	const handleLogin = (e) => {
-		login();
-		Navigate('/');
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { isAuthenticating } = useSelector((state) => state.user)
+
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	//const { user, login } = useAuth();
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		if (!email || !password)
+			return Swal.fire('Error', 'Todos los campos son obligatorios', 'error');
+		//login();
+		try{
+			await dispatch(login({email, password}));
+		}catch(err){
+			console.log(err);
+		}
 	};
+
+	useEffect(() => {
+		isAuthenticating && navigate('/');
+	}, [isAuthenticating, navigate]);
+
+
 	return (
 		<div className='flex h-screen justify-center md:px-3 md:pt-3 col-span-3'>
 			<div className='hidden lg:grid justify-items-center items-end h-full'>
@@ -30,11 +52,13 @@ export const Login = () => {
 						type='text'
 						text='Correo electronico'
 						isRequired
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<CommonInput
 						type='password'
 						text='Contraseña'
 						isRequired
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<button
 						onClick={handleLogin}

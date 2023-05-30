@@ -9,17 +9,20 @@ import { HiOutlineUserCircle } from 'react-icons/hi';
 import { RxExit } from 'react-icons/rx';
 import { Link, useNavigate, NavLink } from 'react-router-dom';
 import logo from '../../assets/camera.svg';
-import { useAuth } from '../../context/AuthContext';
-import { Modal } from '../publication/Modal';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../Store/Slices/Auth/thunks';
+import { useUser } from '../../hooks/useUser';
 
-export const Navbar = () => {
-	const { user, logout } = useAuth();
+export const Navbar = ({handleModal}) => {
+
+	const { user } = useUser();
 	const [active, setActive] = useState('home');
-	const Navigate = useNavigate();
+	const navigate = useNavigate();
 	const searchRef = useRef();
-	const [modalState, setModalState] = useState(false);
 
-	const navClass = !user && 'hidden';
+	const dispatch = useDispatch();
+
+
 	const activeClass =
 		'group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 bg-gray-100 w-full';
 	const inactiveClass =
@@ -31,17 +34,14 @@ export const Navbar = () => {
 
 	const handleLogout = () => {
 		setActive('home');
-		logout();
-		Navigate('/login');
+		dispatch(logout());
+		navigate('/login');
 	};
 
-	const handleModal = () => {
-		setModalState(!modalState);
-	};
 
 	return (
 		<>
-			<div className={`${navClass} min-h-screen bg-gray-100 fixed z-10`}>
+			<div className={` min-h-screen bg-gray-100 fixed z-10`}>
 				<div
 					className={`min-h-screen border-r overflow-hidden transition-all duration-300 ease-in-out  bg-white shadow-lg ${
 						active == 'search' ? 'w-12' : 'w-60'
@@ -92,7 +92,7 @@ export const Navbar = () => {
 										</span>
 									</button>
 								</li>
-								<li
+								{/* <li
 									className='min-w-max'
 									onClick={() => classSelected('send')}>
 									<NavLink
@@ -109,11 +109,11 @@ export const Navbar = () => {
 											Mensajes
 										</span>
 									</NavLink>
-								</li>
+								</li> */}
 								<li
 									className='min-w-max'
 									onClick={
-										(() => {classSelected('create'); setModalState(!modalState)})
+										(() => {classSelected('create'); handleModal()})
 									}>
 									<button
 										className={
@@ -132,7 +132,7 @@ export const Navbar = () => {
 									className='min-w-max'
 									onClick={() => classSelected('profile')}>
 									<Link
-										to='/profile/3'
+										to={ `/profile/${user.userID}`}
 										className={
 											active == 'profile' ? activeClass : inactiveClass
 										}>
@@ -152,7 +152,7 @@ export const Navbar = () => {
 						</div>
 						<div className='w-max -mb-3'>
 							<button
-								onClick={handleLogout}
+								onClick={() => handleLogout()}
 								className='group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600'>
 								<RxExit
 									className='group-hover:text-[#404040]'
@@ -189,10 +189,7 @@ export const Navbar = () => {
 					</div>
 				</div>
 			</div>
-			<Modal
-				modalState={modalState}
-				handleModal={handleModal}
-			/>
+			
 		</>
 	);
 };
