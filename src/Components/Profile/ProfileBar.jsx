@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
+import profileImg from "../../assets/profileImg.webp";
 
 export const ProfileBar = ({ id, foundUser, user }) => {
-
 
   return (
     <>
@@ -14,7 +14,9 @@ export const ProfileBar = ({ id, foundUser, user }) => {
         </div>
         <div className="flex flex-col items-center">
           <img
-            src="https://via.placeholder.com/150"
+            src={
+              foundUser.fileUrl ? `${import.meta.env.VITE_BASE_URL}${foundUser.fileUrl}` : profileImg
+            }
             alt="Profile"
             className="w-36 h-36 rounded-full"
           />
