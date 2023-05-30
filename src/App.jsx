@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ProtectedRoute } from './Components/ProtectedRoute';
 import { Navbar } from './Components/Shared/Navbar';
 import {
 	Home,
@@ -10,13 +9,16 @@ import {
 	Settings,
 	SignUp,
 } from './Pages';
-import { AuthContext } from './context/AuthContext';
+import { ProtectedRouter } from './Components/ProtectedRouter';
+import { Loading } from './Components/Loading';
+import { useSelector } from 'react-redux';
 
 function App() {
+	const { isLoading } = useSelector((state) => state.loading);
+
 	return (
 		<BrowserRouter>
-			<AuthContext>
-				<Navbar />
+				{isLoading && <Loading />}
 				<Routes>
 					<Route
 						path='/login'
@@ -26,40 +28,29 @@ function App() {
 						path='/signup'
 						element={<SignUp />}
 					/>
-					<Route
-						path='/profile/:id'
-						element={
-							<ProtectedRoute>
-								<Profile />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path='/'
-						element={
-							<ProtectedRoute>
-								<Home />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path='/settings'
-						element={
-							<ProtectedRoute>
-								<Settings />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path='/messages'
-						element={<Messages />}
-					/>
+					<Route element={<ProtectedRouter />}>
+						<Route
+							path='/profile/:id'
+							element={<Profile />}
+						/>
+						<Route
+							path='/'
+							element={<Home />}
+						/>
+						<Route
+							path='/settings/:id'
+							element={<Settings />}
+						/>
+						<Route
+							path='/messages'
+							element={<Messages />}
+						/>
+					</Route>
 					<Route
 						path='*'
 						element={<PageNoFound />}
 					/>
 				</Routes>
-			</AuthContext>
 		</BrowserRouter>
 	);
 }

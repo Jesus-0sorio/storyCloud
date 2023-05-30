@@ -1,14 +1,18 @@
-import React from 'react';
+import React from "react";
 
-export const PostsContainer = () => {
+export const PostsContainer = ({userPosts}) => {
+
   return (
     <div className="grid grid-cols-3 gap-4 mx-16 mt-2">
-      <img src="https://via.placeholder.com/300" alt="Imagen 1" className="w-full h-80 object-cover" />
-      <img src="https://via.placeholder.com/300" alt="Imagen 2" className="w-full h-80 object-cover" />
-      <img src="https://via.placeholder.com/300" alt="Imagen 3" className="w-full h-80 object-cover" />
-      <img src="https://via.placeholder.com/300" alt="Imagen 4" className="w-full h-80 object-cover" />
-      <img src="https://via.placeholder.com/300" alt="Imagen 5" className="w-full h-80 object-cover" />
-      <img src="https://via.placeholder.com/300" alt="Imagen 6" className="w-full h-80 object-cover" />
+      {userPosts &&
+        userPosts?.map((post) => (
+          <img
+            key={post._id}
+            src={`${import.meta.env.VITE_BASE_URL}${post.fileUrl}`}
+            alt={post.description}
+            className="w-full h-80 object-cover"
+          />
+        ))}
     </div>
   );
 };

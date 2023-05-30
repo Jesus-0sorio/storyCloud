@@ -1,21 +1,41 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { usePost } from '../../hooks/usePost';
 import Dropzone from '../Dropzone';
+import Swal from 'sweetalert2';
 
-export function Modal({ modalState, handleModal }) {
-	const [open, setOpen] = useState(true);
-
+export const Modal = ({ modalState, handleModal }) => {
 	const cancelButtonRef = useRef(null);
 
-	return (
+	const { file, description, getFile, getDescription, addPost } = usePost();
+
+	const handleaddPost = (e) => {
+		e.preventDefault();
+		if (file == null || description == '') return Swal.fire(
+			'Error',
+			'Por favor, ingrese una imagen y una descripción',
+			'error'
+		);
+		addPost();
+		toogle();
+	};
+
+	const toogle = () => {
+		getFile([]);
+		getDescription('');
+		handleModal();
+	};
+
+	return createPortal(
 		<Transition.Root
 			show={modalState}
 			as={Fragment}>
 			<Dialog
 				as='div'
-				className='relative z-10'
+				className='relative z-10 '
 				initialFocus={cancelButtonRef}
-				onClose={handleModal}>
+				onClose={toogle}>
 				<Transition.Child
 					as={Fragment}
 					enter='ease-out duration-300'
@@ -28,7 +48,7 @@ export function Modal({ modalState, handleModal }) {
 				</Transition.Child>
 
 				<div className='fixed inset-0 z-10 overflow-y-auto'>
-					<div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
+					<div className='flex min-h-full items-center  justify-center p-4 text-center '>
 						<Transition.Child
 							as={Fragment}
 							enter='ease-out duration-300'
@@ -37,42 +57,33 @@ export function Modal({ modalState, handleModal }) {
 							leave='ease-in duration-200'
 							leaveFrom='opacity-100 translate-y-0 sm:scale-100'
 							leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-							<Dialog.Panel className='h-[40rem] w-[70rem] relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8'>
+							<Dialog.Panel className='h-[42rem] w-[70rem] relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8'>
 								<div className='bg-white w-full h-full '>
-									<div className='sm:flex justify-center sm:items-center px-4 pb-3		 sm:pt-4'>
-										<div className='mt-1 text-center sm:ml-4 sm:mt-0 sm:text-left'>
+									<div className='px-4 py-2'>
+										<div className='flex justify-between items-center h-9 sm:ml-4 sm:mt-0'>
 											<Dialog.Title
 												as='h3'
-												className='text-base text-center font-semibold leading-6 text-gray-900'>
+												className='text-base pl-16 sm:pl-0 text-center font-semibold leading-6 text-gray-900 flex-grow'>
 												Crear publicación
 											</Dialog.Title>
-											<button className='absolute top-0 right-0 mt-3 mr-4 text-blue-600 hover:text-blue-800'>
-												{/* <svg
-													className='w-6 h-6 text-gray-400 hover:text-gray-500'
-													xmlns='http://www.w3.org/2000/svg'
-													fill='none'
-													viewBox='0 0 24 24'
-													stroke='currentColor'
-													aria-hidden='true'>
-													<path	
-														strokeLinecap='round'
-														strokeLinejoin='round'
-														strokeWidth={2}
-
-														d='M6 18L18 6M6 6l12 12'
-													/>
-												</svg> */}
+											<button
+												onClick={handleaddPost}
+												className='text-right text-blue-600 hover:text-blue-800'>
 												Compartir
 											</button>
 										</div>
 									</div>
-									<div className='grid grid-cols-4 grid-rows-1 pb-[3.2rem] h-full'>
-										<div className='container col-span-3 mx-auto h-full w-full'>
-											<Dropzone />
+									<div className='grid grid-cols-1 md:grid-cols-4 grid-rows-1 pb-[3.2rem] h-full'>
+										<div className='container col-span-3 max-h-auto max-w-full bg-gray-200 overflow-hidden flex justify-center'>
+											<Dropzone
+												file={file}
+												handleGetFile={getFile}
+											/>
 										</div>
-										<div className='bg-gray-50 min-h-fit'>
+										<div className='bg-gray-50  min-h-fit'>
 											<textarea
-												className='w-full h-full p-4 outline-none resize-none'
+												onChange={(e) => getDescription(e.target.value)}
+												className='w-full h-[4.6rem] md:h-full p-2 outline-none resize-none'
 												placeholder='Escribe una descripción'
 											/>
 										</div>
@@ -83,6 +94,7 @@ export function Modal({ modalState, handleModal }) {
 					</div>
 				</div>
 			</Dialog>
-		</Transition.Root>
+		</Transition.Root>,
+		document.getElementById('modal')
 	);
-}
+};

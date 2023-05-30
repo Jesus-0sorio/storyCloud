@@ -25,21 +25,21 @@ export const Settings = () => {
 					className={active == 'Editar Perfil' ? activeClass : inactiveClass}>
 					Editar Perfil
 				</Tab>
-				<Tab
+				{/* <Tab
 					onClick={() => classSelected('Cambiar contraseña')}
 					className={
 						active == 'Cambiar contraseña' ? activeClass : inactiveClass
 					}>
 					Cambiar Contraseña
-				</Tab>
+				</Tab> */}
 			</TabList>
 
 			<TabPanel>
 				<ProfileEdit />
 			</TabPanel>
-			<TabPanel>
+			{/* <TabPanel>
 				<ChangePassword />
-			</TabPanel>
+			</TabPanel> */}
 		</Tabs>
 	);
 };

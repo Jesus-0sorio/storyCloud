@@ -1,28 +1,47 @@
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-const Dropzone = () => {
-	const [file, setFile] = useState(null);
-
+const Dropzone = ({ file, handleGetFile, imgClass }) => {
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: 'image/*',
 		onDrop: (acceptedFiles) => {
-			setFile(acceptedFiles[0]);
+			handleGetFile(
+				acceptedFiles.map((file) =>
+					Object.assign(file, {
+						preview: URL.createObjectURL(file),
+					})
+				)
+			);
 		},
+		maxFiles: 1,
 	});
+	const thumbs = file ? (
+		<img
+			key={file.name}
+			src={file.preview}
+			className={!imgClass ? 'w-44 mx-auto' : imgClass}
+			// Revoca el objeto URL después de cargar la imagen
+			onLoad={() => {
+				URL.revokeObjectURL(file.preview);
+			}}
+			alt='Vista previa'
+		/>
+	) : null;
 
 	return (
 		<div
-			className='w-full h-full bg-gray-200 flex items-center justify-center'
+			className='text-center  flex items-center justify-center'
 			{...getRootProps()}>
 			<input {...getInputProps()} />
 			{file ? (
-				<p>{file.name}</p>
+				<aside className='w-full h-full flex justify-center items-center'>
+					{thumbs}
+				</aside>
 			) : (
 				<p>Arrastra una imagen aquí o haz clic para seleccionar una</p>
 			)}
 		</div>
 	);
-}
+};
 
 export default Dropzone;
