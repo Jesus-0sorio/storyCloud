@@ -9,11 +9,8 @@ export const login =
 	({ email, password }) =>
 	async (dispatch) => {
 		dispatch(startLoading());
-		const formData = new FormData();
-		formData.append('email', email);
-		formData.append('password', password);
 		try {
-			const { data } = await api.post('/auth/login', formData);
+			const { data } = await api.post('/auth/login', { email, password });
 			window.localStorage.setItem('token', data.access_token);
 			window.localStorage.setItem('user', JSON.stringify(data.user));
 			dispatch(loginSuccess(data));
