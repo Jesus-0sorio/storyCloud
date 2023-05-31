@@ -21,13 +21,16 @@ export const useEditProfile = () => {
 		e.preventDefault();
 
         let user = {};
+        const formD = new FormData();
 
-        if(e.target.elements.email.value) user.email = e.target.elements.email.value;
-        if(e.target.elements.username.value) user.username = e.target.elements.username.value;
-        if(e.target.elements.name.value) user.name = e.target.elements.name.value;
-        if(img) user.file = img;
+        if(e.target.elements.email.value) formData.append('email', e.target.elements.email.value);
+        if(e.target.elements.username.value) formData.append('username', e.target.elements.username.value);
+        if(e.target.elements.name.value) formData.append('name', e.target.elements.name.value);
+        if(img) formData.append('file', img);
+
+       
 	
-		await userServices.update(userID, user);
+		await userServices.update(userID, formD);
 
         e.target.elements.email.value = '';
         e.target.elements.username.value = '';
