@@ -8,10 +8,10 @@ export const userServices = {
 	},
 
 	getAll: async () => {
-		return await apiFile.get(`/${BASE_URL}`);
+		return await api.get(`/${BASE_URL}`);
 	},
 
   update: async (id, data) => {
-		return await apiFile.patch(`/${BASE_URL}/${id}`, data);
+		return await api.patch(`/${BASE_URL}/${id}`, data);
 	},
 };
