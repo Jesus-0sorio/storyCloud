@@ -23,10 +23,10 @@ export const useEditProfile = () => {
         let user = {};
         const formD = new FormData();
 
-        if(e.target.elements.email.value) formData.append('email', e.target.elements.email.value);
-        if(e.target.elements.username.value) formData.append('username', e.target.elements.username.value);
-        if(e.target.elements.name.value) formData.append('name', e.target.elements.name.value);
-        if(img) formData.append('file', img);
+        if(e.target.elements.email.value) formD.append('email', e.target.elements.email.value);
+        if(e.target.elements.username.value) formD.append('username', e.target.elements.username.value);
+        if(e.target.elements.name.value) formD.append('name', e.target.elements.name.value);
+        if(img) formD.append('file', img);
 
        
 	
