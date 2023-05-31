@@ -12,6 +12,6 @@ export const userServices = {
 	},
 
   update: async (id, data) => {
-		return await api.patch(`/${BASE_URL}/${id}`, data);
+		return await apiFile.patch(`/${BASE_URL}/${id}`, data);
 	},
 };
