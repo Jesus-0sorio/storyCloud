@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,react,windows,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,react,windows,dotenv
 
+package-lock.json
+
 ### dotenv ###
 .env
 
