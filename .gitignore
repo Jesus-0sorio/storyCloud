@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,react,windows,dotenv
 
 package-lock.json
+./package-lock.json
 
 ### dotenv ###
 .env
